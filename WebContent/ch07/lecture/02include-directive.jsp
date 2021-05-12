@@ -3,17 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String str = "java";
+%>
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<button class="btn btn-primary">Bootstrap</button>
-</div>
+
+<%= str %>
+
 </body>
 </html>
-
-
-

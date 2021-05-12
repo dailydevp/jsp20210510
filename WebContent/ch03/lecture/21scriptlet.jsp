@@ -3,17 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
-
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<button class="btn btn-primary">Bootstrap</button>
-</div>
+<%
+for(int i = 0; i<5; i++){
+%>
+<%=i %><br>
+<%--
+	out.print(i);
+	out.print("<br>"); 
+--%>
+<% 
+}
+%>
 </body>
 </html>
-
-
-
