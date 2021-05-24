@@ -43,6 +43,11 @@ mapData.put("today",new Date());
 	<c:forEach var="i" items="${intArray }" begin="2" end="4" varStatus="status">
 		${status.index } - ${status.count } - [${i }] <br>
 	</c:forEach>
+	
+	<h4>Map</h4>
+	<c:forEach var="i" items="${map }">
+			${i.key } = ${i.value } <br>
+	</c:forEach>
 
 </div>
 </body>

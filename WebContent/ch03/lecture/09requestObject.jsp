@@ -23,4 +23,3 @@
 <p> 요청 url </p>
 <%= request.getRequestURI() %>
 </body>
-</html>
