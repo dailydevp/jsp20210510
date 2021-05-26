@@ -39,6 +39,7 @@ public class Servlet11InitParam extends HttpServlet {
 		System.out.println(age);
 	}
 
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
