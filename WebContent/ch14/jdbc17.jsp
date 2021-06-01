@@ -17,18 +17,14 @@
 </head>
 <body>
 <div class="container">
-
-	<h1>Add Employees</h1>
-	<form action="${pageContext.request.contextPath }/Exam1" method="post">
-		LastName : <input type = "text" name="lastName"> <br>
-		FirstName : <input type = "text" name = "firstName"> <br>
-<!-- 	birthDate : <input type = "date" name = "birthDate"> <br>  -->	
-		Photo : <input type = "text" name = "photo"> <br>
+	<form action="" method="post">
+		id : <input type ="text" value ="${employee.id }" readonly> <br>
+		Last Name : <input type= "text" value ="${employee.lastName }"> <br>
+		First Name : <input type="text" value="${employee.firstName }"> <br>
 		Notes : <br>
-		<textarea name="notes" rows="3"></textarea>
-		 <br>
-		<input type = "submit">
-		
+		<textarea rows = "5"><c:out value = "${employee.notes }"/></textarea>
+		<br>
+		<input type="submit" value ="수정">
 	</form>
 </div>
 </body>
