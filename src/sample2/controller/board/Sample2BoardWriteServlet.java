@@ -1,6 +1,7 @@
-package sample2.controller;
+package sample2.controller.board;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,20 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sample2.bean.Board;
 import sample2.bean.Member;
-import sample2.dao.MemberDao;
+import sample2.dao.BoardDao;
 
 /**
- * Servlet implementation class Sample2LogInServlet
+ * Servlet implementation class Sample2BoardWriteServlet
  */
-@WebServlet("/sample2/login")
-public class Sample2LogInServlet extends HttpServlet {
+@WebServlet("/sample2/board/write")
+public class Sample2BoardWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sample2LogInServlet() {
+    public Sample2BoardWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +32,7 @@ public class Sample2LogInServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/sample2/login.jsp";
+		String path = "/WEB-INF/sample2/board/write.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -38,26 +40,27 @@ public class Sample2LogInServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("userLogined");
 		
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
+		String title = request.getParameter("title");
+		String body = request.getParameter("body");
 		
-		MemberDao dao = new MemberDao();
-		Member member = dao.getMember(id);
+		Board board = new Board();
+		board.setTitle(title);
+		board.setBody(body);
+		board.setMemberId(member.getId());
 		
-		if(member != null && member.getPassword().equals(password)) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userLogined", member);
-			String path = request.getContextPath() + "/sample2/main";
+		BoardDao dao = new BoardDao();
+		boolean ok = dao.insert(board);
+		
+		if (ok) {
+			String path = request.getContextPath() + "/sample2/board/list";
 			response.sendRedirect(path);
-		}else {
-			String path ="/WEB-INF/sample2/login.jsp";
-			
-			request.setAttribute("message", "아이디나 패스워드가 일치하지 않습니다.");
-			request.getRequestDispatcher(path).forward(request, response);
+		} else {
+				String path = "/WEB-INF/sample2/board/write.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
 		}
-		
 	}
 
 }

@@ -195,5 +195,27 @@
   		<filter-name>filter0302</filter-name>
   		<url-pattern>/filter03</url-pattern>
   	</filter-mapping>
+  	
+  	<filter>
+  		<filter-name>charSetFilter</filter-name>
+  		<filter-class>sample2.filter.RequestCharSetFilter</filter-class>
+  	</filter>
+  	
+  	<filter-mapping>
+  		<filter-name>charSetFilter</filter-name>
+  		<url-pattern>/sample2/*</url-pattern>
+  	</filter-mapping>
   
+    	<filter>
+  		<filter-name>loginFilter</filter-name>
+  		<filter-class>sample2.filter.LoginFilter</filter-class>
+  	</filter>
+  	
+  	<filter-mapping>
+  		<filter-name>loginFilter</filter-name>
+  		<url-pattern>/sample2/board/write</url-pattern>
+  		<url-pattern>/sample2/member/info</url-pattern>
+  		<url-pattern>/sample2/member/list</url-pattern>
+  	</filter-mapping>
+  	
 </web-app>
