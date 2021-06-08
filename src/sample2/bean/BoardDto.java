@@ -8,8 +8,9 @@ public class BoardDto {
 	private String title;
 	private String body;
 	private String memberName;
+	private String memberId;
 	private Timestamp inserted;
-	
+		
 	public int getBoardId() {
 		return boardId;
 	}
@@ -34,13 +35,19 @@ public class BoardDto {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	public Timestamp getInserted() {
 		return inserted;
 	}
 	public void setInserted(Timestamp inserted) {
 		this.inserted = inserted;
 	}
-	
+
 	public String getTimeAgo() {
 		long now = System.currentTimeMillis();
 		long inserted = this.inserted.getTime();

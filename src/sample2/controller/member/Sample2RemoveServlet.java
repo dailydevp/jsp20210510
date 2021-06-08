@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sample2.bean.Member;
+import sample2.dao.BoardDao;
 import sample2.dao.MemberDao;
+import sample2.service.member.MemberRemoveService;
 
 /**
  * Servlet implementation class Sample2RemoveServlet
@@ -17,14 +19,26 @@ import sample2.dao.MemberDao;
 @WebServlet("/sample2/member/remove")
 public class Sample2RemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private MemberRemoveService service = null;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sample2RemoveServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public Sample2RemoveServlet() {
+		super();
+	}
+	
+	public void init() throws ServletException {
+		super.init();
+		this.service = new MemberRemoveService();
+	}
+	
+	
+//    public Sample2RemoveServlet() throws ServletException {
+//        super();
+//        // TODO Auto-generated constructor stub
+//    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,8 +55,11 @@ public class Sample2RemoveServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("userLogined");
 		
-		MemberDao dao = new MemberDao();
-		dao.remove(member.getId());
+//		MemberRemoveService service = new MemberRemoveService(); //이 객체 미리 만들어둬도 됨. (=이닛메소드?)
+		
+//		service.remove(member.getId());
+		
+		this.service.remove(member.getId());
 		
 		session.invalidate();
 		

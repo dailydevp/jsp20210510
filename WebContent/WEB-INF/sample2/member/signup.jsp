@@ -35,6 +35,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<s2:navbar></s2:navbar>
 <div class="container">
 	<form action="${pageContext.request.contextPath }/sample2/member/signup" method ="post">
 		id :<br>
@@ -53,11 +54,7 @@ $(document).ready(function(){
 	
 	</form>
 	
-	<c:if test="${not empty message }">
-	<div>
-		${message }
-	</div>
-	</c:if>
+	<s2:message></s2:message>
 </div>
 </body>
 </html>
