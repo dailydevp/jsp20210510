@@ -205,6 +205,7 @@ public class MemberDao {
 		try(
 			PreparedStatement pstmt = con.prepareStatement(sql);
 				){
+			
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 		}catch (Exception e){
