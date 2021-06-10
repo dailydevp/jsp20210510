@@ -17,7 +17,7 @@
 <body>
 <s2:navbar />
 <div class="container">
-	<h1>글 목록</h1>
+	<h1>글 목록<small class="text-muted">[${totalNum }]</small></h1>
 	<s2:message></s2:message>
 	<table class ="table">
 		<thead>
@@ -29,7 +29,6 @@
 			</tr>
 		</thead>
 
-
 		<tbody>
 			<c:forEach items="${boards }" var ="board">
 				<tr>
@@ -38,6 +37,9 @@
 						<a href="<%= request.getContextPath() %>/sample2/board/detail?id=${board.boardId}">
 								${board.title }
 						</a>
+						<c:if test="${board.numberOfComment != 0 }">
+							<span>[${board.numberOfComment }]</span>
+						</c:if>
 					</td>
 					<td>${board.memberName }</td>
 					<td>${board.timeAgo }</td> 

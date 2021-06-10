@@ -38,7 +38,7 @@ public class CommentDao {
 				+ "				c.inserted inserted, "
 				+ "				c.comment comment, "
 				+ "				c.boardId boardId "
-				+ "		FROM Comment c JOIN Member m ON c.memberId = m.Id "
+				+ "		FROM Comment c JOIN Member m ON c.memberId = m.id "
 				+ "		WHERE c.boardId = ? "
 				+ "		ORDER BY commentId DESC ";
 		ResultSet rs = null;
@@ -104,6 +104,29 @@ public class CommentDao {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public int getNumberOfComment(String id, Connection con) {
+		String sql = "SELECT COUNT(*) FROM Comment WHERE memberId = ? ";
+		
+		ResultSet rs = null;
+		
+		try(
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs);
+		}
+		return 0;
 	}
 	
 }
