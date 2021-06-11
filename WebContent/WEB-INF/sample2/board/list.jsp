@@ -38,6 +38,7 @@
 								${board.title }
 						</a>
 						<c:if test="${board.numberOfComment != 0 }">
+							<i class="fa-solid fa-comment"></i>
 							<span>[${board.numberOfComment }]</span>
 						</c:if>
 					</td>

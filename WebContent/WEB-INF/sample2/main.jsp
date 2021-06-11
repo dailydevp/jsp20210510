@@ -18,6 +18,7 @@
 <div class="container">
 
 	<s2:navbar />
+	<s2:message />
 
 	<h1>환영합니다.</h1>
 	<a href="<%= request.getContextPath() %>/sample2/member/signup">회원가입</a>
